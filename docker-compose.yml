@@ -1,0 +1,27 @@
+version: '3'
+
+services: 
+    back: 
+        build: 
+            context: back/
+            dockerfile: back.Dockerfile
+        networks: 
+            - bridge
+        ports: 
+            - 5000:5000
+        restart: always
+    front: 
+        build: 
+            context: front/
+            dockerfile: front.Dockerfile
+        ports: 
+            - 6679:80
+        networks: 
+            - bridge
+        restart: always
+        depends_on: 
+            - back
+
+networks:
+    bridge:
+     
