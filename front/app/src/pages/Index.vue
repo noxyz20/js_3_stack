@@ -5,6 +5,7 @@
         url="http://localhost:5000/upload"
         color="primary"
         flat
+        @upload="postUpload"
         bordered
         style="max-width: 300px"
       />
@@ -16,6 +17,11 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'PageIndex'
+  name: 'PageIndex',
+  methods: {
+    postUpload (event) {
+      console.log(event) // event is just the file name! The full response would be more useful
+    }
+  }
 })
 </script>

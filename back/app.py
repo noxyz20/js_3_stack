@@ -1,7 +1,8 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from werkzeug.utils import secure_filename
 from flask_cors import CORS
 import os
+from video import Video
 
 app = Flask(__name__)
 cors = CORS()
@@ -13,8 +14,10 @@ def upload():
         f = request.files.get(fname)
         print(f)
     f.save('./uploads/%s' % secure_filename(fname))
-
-    return 'Okay!'
+    test = Video("zebi", './uploads/'+fname)
+    frame_array = test.treatement()
+    test.save_ressource()
+    return jsonify(frame_array)
 
 
 if __name__ == '__main__':
